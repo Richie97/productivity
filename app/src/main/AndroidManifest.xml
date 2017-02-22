@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:name=".App"
         android:theme="@style/AppTheme">
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.impl.OnboardingActivity" />
-        <activity android:name=".view.impl.OverviewActivity"></activity>
+        <activity android:name=".view.impl.OverviewActivity"/>
     </application>
 
 </manifest>
