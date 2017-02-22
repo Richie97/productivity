@@ -42,7 +42,6 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
     @Override
     protected void onStart() {
         super.onStart();
-        mPresenter.onStart(true);
     }
 
     @Override
