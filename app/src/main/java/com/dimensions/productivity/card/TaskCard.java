@@ -1,9 +1,10 @@
-package com.dimensions.productivity.model;
+package com.dimensions.productivity.card;
 
 import android.util.Log;
 import android.widget.TextView;
 
 import com.dimensions.productivity.R;
+import com.dimensions.productivity.model.Task;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
@@ -25,14 +26,14 @@ public class TaskCard {
         this.task = task;
     }
 
-    @View(R.id.subtitle)
+    @View(R.id.account)
     private TextView subtitle;
 
     @View(R.id.title)
     private TextView title;
 
 
-    @Click(R.id.subtitle)
+    @Click(R.id.account)
     private void onClick(){
         Log.d("DEBUG", "profileImageView");
     }
