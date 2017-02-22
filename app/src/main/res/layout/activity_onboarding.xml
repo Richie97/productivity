@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dimensions.productivity.activity.OnboardingActivity">
+    tools:context=".view.impl.OnboardingActivity">
 
-    <com.mindorks.placeholderview.PlaceHolderView
+    <com.mindorks.placeholderview.SwipePlaceHolderView
         android:id="@+id/stack"
         android:layout_width="368dp"
         android:layout_height="495dp"

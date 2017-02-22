@@ -2,9 +2,12 @@ package com.dimensions.productivity.presenter.impl;
 
 import android.support.annotation.NonNull;
 
+import com.dimensions.productivity.interactor.OnboardingInteractor;
+import com.dimensions.productivity.model.Task;
 import com.dimensions.productivity.presenter.OnboardingPresenter;
 import com.dimensions.productivity.view.OnboardingView;
-import com.dimensions.productivity.interactor.OnboardingInteractor;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,7 +29,8 @@ public final class OnboardingPresenterImpl extends BasePresenterImpl<OnboardingV
     public void onStart(boolean firstStart) {
         super.onStart(firstStart);
 
-        // Your code here. Your view is available using mView and will not be null until next onStop()
+        List<Task> tasks = mInteractor.getTasks();
+        mView.showTasks(tasks);
     }
 
     @Override
