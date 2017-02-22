@@ -68,15 +68,11 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
                 .setWidthSwipeDistFactor(15)
                 .setHeightSwipeDistFactor(20)
                 .setSwipeDecor(new SwipeDecor()
-//                        .setMarginTop(300)
-//                        .setMarginLeft(100)
-//                        .setViewGravity(Gravity.TOP)
                         .setPaddingTop(20)
                         .setRelativeScale(0.01f));
         for (int i = 0; i < 20; i++) {
             mSwipView.addView(new TaskCard(new DemoTask("Task Title " + i, "Account for Task " + i)));
         }
         mSwipView.enableTouchSwipe();
-
     }
 }
