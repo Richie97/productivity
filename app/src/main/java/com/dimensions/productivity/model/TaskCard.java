@@ -19,7 +19,11 @@ import com.mindorks.placeholderview.annotations.swipe.SwipeOutState;
  */
 @Layout(R.layout.card_onboarding)
 public class TaskCard {
-    private static int count;
+    Task task;
+
+    public TaskCard(Task task) {
+        this.task = task;
+    }
 
     @View(R.id.subtitle)
     private TextView subtitle;
@@ -35,9 +39,8 @@ public class TaskCard {
 
     @Resolve
     private void onResolve(){
-        title.setText("Task Name " + count);
-        subtitle.setText("Subtitle for Task " + count);
-        count++;
+        title.setText(task.getTitle());
+        subtitle.setText(task.getSubtitle());
     }
 
     @SwipeOut

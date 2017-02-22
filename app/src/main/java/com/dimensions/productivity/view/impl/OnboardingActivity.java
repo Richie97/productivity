@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.dimensions.productivity.R;
+import com.dimensions.productivity.model.DemoTask;
 import com.dimensions.productivity.model.Task;
 import com.dimensions.productivity.model.TaskCard;
 import com.dimensions.productivity.view.OnboardingView;
@@ -63,7 +64,7 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
     @Override
     public void showTasks(List<Task> tasks) {
         mSwipView.getBuilder()
-                .setSwipeType(SwipePlaceHolderView.SWIPE_TYPE_HORIZONTAL)
+                .setSwipeType(SwipePlaceHolderView.SWIPE_TYPE_DEFAULT)
                 .setDisplayViewCount(3)
                 .setIsUndoEnabled(true)
                 .setWidthSwipeDistFactor(15)
@@ -74,16 +75,9 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
 //                        .setViewGravity(Gravity.TOP)
                         .setPaddingTop(20)
                         .setRelativeScale(0.01f));
-        mSwipView.addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard())
-                .addView(new TaskCard());
+        for (int i = 0; i < 20; i++) {
+            mSwipView.addView(new TaskCard(new DemoTask("Task Title " + i, "Subtitle for Task " + i)));
+        }
         mSwipView.enableTouchSwipe();
 
     }
