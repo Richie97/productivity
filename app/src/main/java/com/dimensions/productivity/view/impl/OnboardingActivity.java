@@ -6,14 +6,13 @@ import android.support.annotation.NonNull;
 import com.dimensions.productivity.R;
 import com.dimensions.productivity.model.DemoTask;
 import com.dimensions.productivity.model.Task;
-import com.dimensions.productivity.model.TaskCard;
+import com.dimensions.productivity.card.TaskCard;
 import com.dimensions.productivity.view.OnboardingView;
 import com.dimensions.productivity.presenter.loader.PresenterFactory;
 import com.dimensions.productivity.presenter.OnboardingPresenter;
 import com.dimensions.productivity.injection.AppComponent;
 import com.dimensions.productivity.injection.OnboardingViewModule;
 import com.dimensions.productivity.injection.DaggerOnboardingViewComponent;
-import com.mindorks.placeholderview.PlaceHolderView;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 
@@ -76,7 +75,7 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
                         .setPaddingTop(20)
                         .setRelativeScale(0.01f));
         for (int i = 0; i < 20; i++) {
-            mSwipView.addView(new TaskCard(new DemoTask("Task Title " + i, "Subtitle for Task " + i)));
+            mSwipView.addView(new TaskCard(new DemoTask("Task Title " + i, "Account for Task " + i)));
         }
         mSwipView.enableTouchSwipe();
 
