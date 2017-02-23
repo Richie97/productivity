@@ -1,11 +1,11 @@
 package com.dimensions.productivity.model;
-
-/**
- * Created by ericrichardson on 2/23/17.
- */
+import android.support.annotation.Nullable;
 
 public interface Task {
-    String getTaskName();
-    String getTaskDescription();
-    int getLogoResourceId();
+    String getTitle();
+    String getSubtitle();
+    String getId();
+    TaskType getType();
+    @Nullable String getImageUrl();
+    boolean isToday();
 }

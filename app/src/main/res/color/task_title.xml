@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item app:state_today="true" android:color="@color/task_title_today"/>
+    <item android:color="@color/task_title_not_today"/>
+</selector>

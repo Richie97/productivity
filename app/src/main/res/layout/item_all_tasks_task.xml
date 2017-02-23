@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dimensions.productivity.ui.TaskView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/task"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_normal"
+    android:paddingBottom="@dimen/padding_large"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    android:background="@drawable/task_background"
+    android:stateListAnimator="@animator/raise"
+    />

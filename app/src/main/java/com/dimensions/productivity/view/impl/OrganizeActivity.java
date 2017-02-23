@@ -7,16 +7,17 @@ import android.util.TypedValue;
 
 import com.dimensions.productivity.R;
 import com.dimensions.productivity.card.ServiceCard;
+import com.dimensions.productivity.card.TaskCard;
 import com.dimensions.productivity.injection.AppComponent;
-import com.dimensions.productivity.injection.DaggerOnboardingViewComponent;
-import com.dimensions.productivity.injection.OnboardingViewModule;
+import com.dimensions.productivity.injection.DaggerOrganizeViewComponent;
+import com.dimensions.productivity.injection.OrganizeViewModule;
 import com.dimensions.productivity.model.ProductivityService;
-import com.dimensions.productivity.presenter.OnboardingPresenter;
+import com.dimensions.productivity.model.Task;
+import com.dimensions.productivity.presenter.OrganizePresenter;
 import com.dimensions.productivity.presenter.loader.PresenterFactory;
-import com.dimensions.productivity.view.OnboardingView;
+import com.dimensions.productivity.view.OrganizeView;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
-import com.mindorks.placeholderview.listeners.ItemRemovedListener;
 
 import java.util.List;
 
@@ -25,9 +26,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, OnboardingView> implements OnboardingView, ServiceCard.OnSwipeCallback {
+public final class OrganizeActivity extends BaseActivity<OrganizePresenter, OrganizeView> implements OrganizeView, TaskCard.OnSwipeCallback {
     @Inject
-    PresenterFactory<OnboardingPresenter> mPresenterFactory;
+    PresenterFactory<OrganizePresenter> mPresenterFactory;
 
     @BindView(R.id.stack)
     SwipePlaceHolderView mSwipView;
@@ -42,27 +43,22 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
     protected void setupComponent(@NonNull AppComponent parentComponent) {
-        DaggerOnboardingViewComponent.builder()
+        DaggerOrganizeViewComponent.builder()
                 .appComponent(parentComponent)
-                .onboardingViewModule(new OnboardingViewModule())
+                .organizeViewModule(new OrganizeViewModule())
                 .build()
                 .inject(this);
     }
 
     @NonNull
     @Override
-    protected PresenterFactory<OnboardingPresenter> getPresenterFactory() {
+    protected PresenterFactory<OrganizePresenter> getPresenterFactory() {
         return mPresenterFactory;
     }
 
     @Override
-    public void showTasks(List<ProductivityService> productivityServices) {
+    public void showTasks(List<Task> tasks) {
         mSwipView.removeAllViews();
         mSwipView.getBuilder()
                 .setSwipeType(SwipePlaceHolderView.SWIPE_TYPE_DEFAULT)
@@ -72,13 +68,13 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
                         .setPaddingTop((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -30, getResources().getDisplayMetrics()))
                         .setRelativeScale(0.1f));
         mSwipView.addItemRemoveListener(count -> {
-            if(count == 0) {
-                startActivity(new Intent(OnboardingActivity.this, OrganizeActivity.class));
+            if (count == 0) {
+                startActivity(new Intent(OrganizeActivity.this, OverviewActivity.class));
                 finish();
             }
         });
-        for (ProductivityService productivityService : productivityServices) {
-            mSwipView.addView(new ServiceCard(productivityService, this));
+        for (Task task : tasks) {
+            mSwipView.addView(new TaskCard(task, this));
         }
         mSwipView.enableTouchSwipe();
     }
@@ -87,4 +83,5 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
     public void onSwiped() {
         mPresenter.onSwipe();
     }
+
 }
