@@ -36,8 +36,10 @@
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     app:cpv_progress="60"
-                    app:cpv_progressColor="#2AE9FD"
-                    app:cpv_thickness="20dp"
+                    app:cpv_progressColorEnd="#E9FF00"
+                    app:cpv_progressColorStart="#FAFFC4"
+                    app:cpv_remainderColor="#64FFFFFF"
+                    app:cpv_thickness="15dp"
                     app:layout_collapseMode="pin" />
             </android.support.v7.widget.Toolbar>
 

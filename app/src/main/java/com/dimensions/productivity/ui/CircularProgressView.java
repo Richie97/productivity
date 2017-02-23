@@ -9,9 +9,9 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
@@ -26,11 +26,14 @@ public class CircularProgressView extends View {
     private int max = 100;
 
     private int startAngle = -90;
-    private int progressColor = Color.DKGRAY;
+    private int progressColorStart = Color.DKGRAY;
+    private int progressColorEnd;
     private int remainderColor;
     private RectF rectF;
     private Paint backgroundPaint;
     private Paint foregroundPaint;
+
+    private Matrix matrix;
 
 
     public CircularProgressView(Context context) {
@@ -90,14 +93,35 @@ public class CircularProgressView extends View {
         invalidate();
     }
 
-    public int getProgressColor() {
-        return progressColor;
+    @ColorInt
+    public int getProgressColorStart() {
+        return progressColorStart;
     }
 
-    public void setProgressColor(int progressColor) {
-        this.progressColor = progressColor;
-        backgroundPaint.setColor(adjustAlpha(progressColor, 0.3f));
-        foregroundPaint.setColor(progressColor);
+    public void setProgressColorStart(@ColorInt int progressColorStart) {
+        this.progressColorStart = progressColorStart;
+        invalidate();
+        requestLayout();
+    }
+
+    @ColorInt
+    public int getProgressColorEnd() {
+        return progressColorStart;
+    }
+
+    public void setProgressColorEnd(@ColorInt int progressColorEnd) {
+        this.progressColorEnd = progressColorEnd;
+        invalidate();
+        requestLayout();
+    }
+
+    @ColorInt
+    public int getRemainderColor() {
+        return remainderColor;
+    }
+
+    public void setRemainderColor(@ColorInt int remainderColor) {
+        this.remainderColor = remainderColor;
         invalidate();
         requestLayout();
     }
@@ -107,7 +131,8 @@ public class CircularProgressView extends View {
         try {
             thickness = typedArray.getDimension(R.styleable.CircularProgressView_cpv_thickness, thickness);
             progress = typedArray.getFloat(R.styleable.CircularProgressView_cpv_progress, progress);
-            progressColor = typedArray.getInt(R.styleable.CircularProgressView_cpv_progressColor, progressColor);
+            progressColorStart = typedArray.getInt(R.styleable.CircularProgressView_cpv_progressColorStart, progressColorStart);
+            progressColorEnd = typedArray.getInt(R.styleable.CircularProgressView_cpv_progressColorEnd, progressColorStart);
             remainderColor = typedArray.getInt(R.styleable.CircularProgressView_cpv_remainderColor, -1);
             min = typedArray.getInt(R.styleable.CircularProgressView_cpv_min, min);
             max = typedArray.getInt(R.styleable.CircularProgressView_cpv_max, max);
@@ -116,10 +141,7 @@ public class CircularProgressView extends View {
         }
 
         if (remainderColor == -1) {
-            remainderColor = adjustAlpha(progressColor, 0.3f);
-            Log.d("******", "It's being set");
-        } else {
-            Log.d("******", "It's " + remainderColor);
+            remainderColor = adjustAlpha(progressColorStart, 0.3f);
         }
 
         backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -128,12 +150,13 @@ public class CircularProgressView extends View {
         backgroundPaint.setStrokeWidth(thickness);
 
         foregroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        foregroundPaint.setColor(progressColor);
+        foregroundPaint.setColor(progressColorStart);
         foregroundPaint.setStyle(Paint.Style.STROKE);
         foregroundPaint.setStrokeCap(Paint.Cap.ROUND);
         foregroundPaint.setStrokeWidth(thickness);
 
         rectF = new RectF();
+        matrix = new Matrix();
     }
 
     @Override
@@ -149,25 +172,13 @@ public class CircularProgressView extends View {
         final int height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
         final int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
 
-        Matrix matrix = new Matrix();
         matrix.postRotate(270f, width / 2, height / 2);
-        SweepGradient shader = new SweepGradient(width / 2, height / 2, new int[]{Color.RED, Color.BLUE, Color.RED}, new float[]{0, progress / max, 1});//width / 2, height / 2, height / 2, Color.TRANSPARENT, progressColor, Shader.TileMode.MIRROR)
+        SweepGradient shader = new SweepGradient(width / 2, height / 2, new int[]{progressColorEnd, progressColorStart, progressColorEnd}, new float[]{0, progress / max, 1});
         shader.setLocalMatrix(matrix);
         foregroundPaint.setShader(shader);
         final int min = Math.min(width, height);
         setMeasuredDimension(min, min);
         rectF.set(0 + thickness / 2, 0 + thickness / 2, min - thickness / 2, min - thickness / 2);
-    }
-
-    public int lightenColor(int color, float factor) {
-        float r = Color.red(color) * factor;
-        float g = Color.green(color) * factor;
-        float b = Color.blue(color) * factor;
-        int ir = Math.min(255, (int) r);
-        int ig = Math.min(255, (int) g);
-        int ib = Math.min(255, (int) b);
-        int ia = Color.alpha(color);
-        return (Color.argb(ia, ir, ig, ib));
     }
 
     public int adjustAlpha(int color, float factor) {
