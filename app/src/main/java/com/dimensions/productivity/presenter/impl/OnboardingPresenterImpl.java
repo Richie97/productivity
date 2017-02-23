@@ -3,7 +3,7 @@ package com.dimensions.productivity.presenter.impl;
 import android.support.annotation.NonNull;
 
 import com.dimensions.productivity.interactor.OnboardingInteractor;
-import com.dimensions.productivity.model.Task;
+import com.dimensions.productivity.model.ProductivityService;
 import com.dimensions.productivity.presenter.OnboardingPresenter;
 import com.dimensions.productivity.view.OnboardingView;
 
@@ -29,8 +29,8 @@ public final class OnboardingPresenterImpl extends BasePresenterImpl<OnboardingV
     public void onStart(boolean firstStart) {
         super.onStart(firstStart);
 
-        List<Task> tasks = mInteractor.getTasks();
-        mView.showTasks(tasks);
+        List<ProductivityService> productivityServices = mInteractor.getTasks();
+        mView.showTasks(productivityServices);
     }
 
     @Override
@@ -48,5 +48,12 @@ public final class OnboardingPresenterImpl extends BasePresenterImpl<OnboardingV
          */
 
         super.onPresenterDestroyed();
+    }
+
+    @Override
+    public void onSwipe() {
+        mInteractor.onSwipe();
+        List<ProductivityService> productivityServices = mInteractor.getTasks();
+        mView.showTasks(productivityServices);
     }
 }

@@ -1,9 +1,12 @@
 package com.dimensions.productivity.view.impl;
 
+import android.content.AbstractThreadedSyncAdapter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +18,11 @@ import com.dimensions.productivity.injection.DaggerAllTasksViewComponent;
 import com.dimensions.productivity.model.Task;
 import com.dimensions.productivity.presenter.AllTasksPresenter;
 import com.dimensions.productivity.presenter.loader.PresenterFactory;
+import com.dimensions.productivity.ui.OnDragStartListener;
+import com.dimensions.productivity.ui.TaskView;
 import com.dimensions.productivity.view.AllTasksView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,12 +31,17 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public final class AllTasksFragment extends BaseFragment<AllTasksPresenter, AllTasksView> implements AllTasksView {
+import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
+
+public final class AllTasksFragment
+        extends BaseFragment<AllTasksPresenter, AllTasksView>
+        implements AllTasksView, OnDragStartListener {
     @Inject PresenterFactory<AllTasksPresenter> mPresenterFactory;
 
     @BindView(R.id.all_tasks) RecyclerView tasksList;
 
-    private AllTasksAdapter adapter = new AllTasksAdapter();
+    private AllTasksAdapter adapter;
+    private ItemTouchHelper touchHelper;
 
     public AllTasksFragment() {
         // Required empty public constructor
@@ -45,7 +56,27 @@ public final class AllTasksFragment extends BaseFragment<AllTasksPresenter, AllT
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tasksList.setHasFixedSize(true);
+        adapter = new AllTasksAdapter(this);
         tasksList.setAdapter(adapter);
+        tasksList.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
+        touchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+            @Override public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder
+                    viewHolder, RecyclerView.ViewHolder target) {
+                adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+                return false;
+            }
+
+            @Override public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                // no-op
+            }
+
+            @Override public boolean canDropOver(RecyclerView recyclerView, RecyclerView
+                    .ViewHolder current, RecyclerView.ViewHolder target) {
+                return target instanceof TaskViewHolder;
+            }
+                });
+        touchHelper.attachToRecyclerView(tasksList);
     }
 
     @Override protected void setupComponent(@NonNull AppComponent parentComponent) {
@@ -64,30 +95,120 @@ public final class AllTasksFragment extends BaseFragment<AllTasksPresenter, AllT
         adapter.setTasks(tasks);
     }
 
-    class AllTasksAdapter extends RecyclerView.Adapter<TaskViewHolder> {
+    @Override public void onDragStart(RecyclerView.ViewHolder viewHolder) {
+        touchHelper.startDrag(viewHolder);
+    }
 
-        private List<Task> tasks = Collections.emptyList();
+    private static class AllTasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+        private final OnDragStartListener dragListener;
+        private final List<Task> todayTasks = new ArrayList<>();
+        private final List<Task> laterTasks = new ArrayList<>();
+
+        AllTasksAdapter(OnDragStartListener dragListener) {
+            this.dragListener = dragListener;
+        }
 
         void setTasks(List<Task> tasks) {
-            this.tasks = tasks;
+            todayTasks.clear();
+            laterTasks.clear();
+            for (Task task : tasks) {
+                if (task.isToday()) {
+                    todayTasks.add(task);
+                } else {
+                    laterTasks.add(task);
+                }
+            }
             notifyDataSetChanged();
         }
 
-        @Override public TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new TaskViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_all_tasks_task, parent, false));
+        @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
+            switch (viewType) {
+                case R.layout.item_all_tasks_task:
+                    return new TaskViewHolder(view);
+                case R.layout.item_all_tasks_today_header:
+                case R.layout.item_all_tasks_later_header:
+                    return new HeaderViewHolder(view);
+                default: throw new IllegalArgumentException();
+            }
         }
 
-        @Override public void onBindViewHolder(TaskViewHolder holder, int position) {
-            holder.bind(tasks.get(position));
+        @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            switch (getItemViewType(position)) {
+                case R.layout.item_all_tasks_task:
+                    ((TaskViewHolder) holder).bind(getTask(position), dragListener);
+                    break;
+            }
+        }
+
+        private Task getTask(int position) {
+            if (todayTasks.size() > 0) {
+                position--;
+                if (position <= todayTasks.size()) {
+                    return todayTasks.get(position);
+                }
+                position -= todayTasks.size();
+            }
+            if (laterTasks.size() > 0) {
+                position--;
+                if (position <= laterTasks.size()) {
+                    return laterTasks.get(position);
+                }
+            }
+            throw new IllegalArgumentException();
         }
 
         @Override public int getItemCount() {
-            return tasks.size();
+            int count = 0;
+            if (todayTasks.size() > 0) {
+                count += todayTasks.size();
+                count++; // title
+            }
+            if (laterTasks.size() > 0) {
+                count += laterTasks.size();
+                count++; // title
+            }
+            return count;
+        }
+
+        @Override public int getItemViewType(int position) {
+            int index = position;
+            if (todayTasks.size() > 0) {
+                if (index == 0) {
+                    return R.layout.item_all_tasks_today_header;
+                }
+                index--;
+                if (index < todayTasks.size()) {
+                    return R.layout.item_all_tasks_task;
+                }
+                index -= todayTasks.size();
+            }
+            if (laterTasks.size() > 0) {
+                if (index == 0) {
+                    return R.layout.item_all_tasks_later_header;
+                }
+                index--;
+                if (index < laterTasks.size()) {
+                    return R.layout.item_all_tasks_task;
+                }
+            }
+            throw new IllegalArgumentException();
+        }
+
+        void moveItem(int from, int to) {
+            if (todayTasks.size() > 0) {
+                int fromToday = from - 1;
+                int toToday = to - 1;
+                if (fromToday < todayTasks.size() && toToday < todayTasks.size()) {
+                    Collections.swap(todayTasks, fromToday, toToday);
+                    notifyItemMoved(from, to);
+                }
+            }
         }
     }
 
-    class TaskViewHolder extends RecyclerView.ViewHolder {
+    static class TaskViewHolder extends RecyclerView.ViewHolder {
         TaskView taskView;
 
         TaskViewHolder(View itemView) {
@@ -95,8 +216,15 @@ public final class AllTasksFragment extends BaseFragment<AllTasksPresenter, AllT
             taskView = (TaskView) itemView;
         }
 
-        void bind(Task task) {
-            taskView.bind(task);
+        void bind(Task task, OnDragStartListener dragListener) {
+            taskView.bind(task, () -> dragListener.onDragStart(TaskViewHolder.this));
+        }
+    }
+
+    static private class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        HeaderViewHolder(View itemView) {
+            super(itemView);
         }
     }
 }

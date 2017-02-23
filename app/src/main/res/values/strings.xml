@@ -5,4 +5,13 @@
         <item quantity="one"><b>%d</b> of <b>%d</b> task completed</item>
         <item quantity="other"><b>%d</b> of <b>%d</b> tasks completed</item>
     </plurals>
+
+    <string name="connect">Connect</string>
+    <string name="connect_text">Here are some of the existing services we found. Swipe right to connect them.</string>
+    <string name="account_signed_in">You are currently signed with</string>
+    <string name="todays_tasks">Today\'s tasks</string>
+    <string name="later_tasks">Other tasks</string>
+    <string name="organize">Organize</string>
+    <string name="organize_text">Select the tasks you want to work on by swiping right or work on list generated just for you</string>
+
 </resources>

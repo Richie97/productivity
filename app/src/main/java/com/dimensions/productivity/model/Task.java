@@ -1,5 +1,4 @@
 package com.dimensions.productivity.model;
-
 import android.support.annotation.Nullable;
 
 public interface Task {

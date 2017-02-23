@@ -7,6 +7,7 @@ import com.dimensions.productivity.interactor.impl.AllTasksInteractorImpl;
 import com.dimensions.productivity.presenter.loader.PresenterFactory;
 import com.dimensions.productivity.presenter.AllTasksPresenter;
 import com.dimensions.productivity.presenter.impl.AllTasksPresenterImpl;
+import com.squareup.picasso.Picasso;
 
 import dagger.Module;
 import dagger.Provides;
