@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
+import android.view.View;
 
 import com.dimensions.productivity.R;
 import com.dimensions.productivity.card.ServiceCard;
@@ -31,6 +32,8 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
 
     @BindView(R.id.stack)
     SwipePlaceHolderView mSwipView;
+    @BindView(R.id.imageView)
+    View logo;
 
     // Your presenter is available using the mPresenter variable
 
@@ -41,9 +44,13 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
         ButterKnife.bind(this);
         mSwipView.addItemRemoveListener(count -> {
             if(count == 0) {
-                startActivity(new Intent(OnboardingActivity.this, OrganizeActivity.class));
+                startActivity(new Intent(this, OrganizeActivity.class));
                 finish();
             }
+        });
+        logo.setOnClickListener(v -> {
+            startActivity(new Intent(this, OrganizeActivity.class));
+            finish();
         });
     }
 

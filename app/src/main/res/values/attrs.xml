@@ -3,6 +3,7 @@
 
     <declare-styleable name="TaskView">
         <attr name="state_today" format="boolean|reference" />
+        <attr name="showHandle" format="boolean|reference" />
     </declare-styleable>
 
     <declare-styleable name="BaselineGridTextView">

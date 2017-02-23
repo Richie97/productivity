@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -47,10 +48,10 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
 
     @BindViews({R.id.overview_header_today_progress_label, R.id.overview_header_t_minus_1_label, R.id.overview_header_t_minus_2_label, R.id.overview_header_t_minus_3_label, R.id.overview_header_t_minus_4_label, R.id.overview_header_t_minus_5_label, R.id.overview_header_t_minus_6_label})
     List<TextView> progressLabels;
+    @BindDimen(R.dimen.page_margin) int pageMargin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         ButterKnife.bind(this);
@@ -61,6 +62,7 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
         super.onStart();
         mPresenter.onStart(true);
         viewPager.setAdapter(new OverviewAdapter(getSupportFragmentManager()));
+        viewPager.setPageMargin(pageMargin);
         tabs.setupWithViewPager(viewPager);
     }
 
@@ -154,7 +156,7 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
                 case 0:
                     return getString(R.string.todays_tasks);
                 case 1:
-                    return getString(R.string.later_tasks);
+                    return getString(R.string.all_tasks);
                 default:
                     throw new IllegalArgumentException();
             }
