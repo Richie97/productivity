@@ -5,6 +5,12 @@
         <attr name="state_today" format="boolean|reference" />
     </declare-styleable>
 
+    <declare-styleable name="BaselineGridTextView">
+        <attr name="lineHeightMultiplierHint" format="float"/>
+        <attr name="lineHeightHint" format="dimension"/>
+        <attr name="android:textAppearance"/>
+    </declare-styleable>
+
     <declare-styleable name="CircularProgressView">
         <attr name="cpv_min" format="integer" />
         <attr name="cpv_max" format="integer" />

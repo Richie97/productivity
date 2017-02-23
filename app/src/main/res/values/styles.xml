@@ -6,6 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/windowBg</item>
         <item name="android:textColorSecondary">@color/text_color_secondary</item>
+        <item name="android:listDivider">@drawable/list_divider</item>
     </style>
 
 </resources>

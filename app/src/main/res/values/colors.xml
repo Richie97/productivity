@@ -11,5 +11,6 @@
     <color name="task_title_today">#000</color>
     <color name="task_title_not_today">#888</color>
     <color name="text_color_secondary">#888</color>
-
+    <color name="divider">#eeeeee</color>
+    <color name="header_background">#eeeeee</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.dimensions.productivity.view.impl;
+package com.dimensions.productivity.ui;
 
 import android.content.Context;
 import android.graphics.Outline;

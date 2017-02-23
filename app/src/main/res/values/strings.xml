@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Productivity</string>
+    <string name="todays_tasks">Today\'s tasks</string>
+    <string name="later_tasks">Other tasks</string>
 </resources>
