@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <android.support.constraint.Guideline
+        android:id="@+id/keyline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="@dimen/keyline_all_tasks"
+        android:orientation="vertical"
+        />
+
+    <com.dimensions.productivity.view.impl.CircularImageView
+        android:id="@+id/task_service_icon"
+        android:layout_width="@dimen/service_icon_size"
+        android:layout_height="@dimen/service_icon_size"
+        app:layout_constraintEnd_toStartOf="@id/keyline"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="1dp"
+        />
+
+    <ImageView
+        android:id="@+id/task_drag_handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintEnd_toStartOf="@id/task_service_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_drag"
+        />
+
+    <TextView
+        android:id="@+id/task_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/keyline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/padding_large"
+        android:duplicateParentState="true"
+        android:textAppearance="@style/TextAppearance.TaskTitle"
+        />
+
+    <TextView
+        android:id="@+id/task_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/keyline"
+        app:layout_constraintTop_toBottomOf="@id/task_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/padding_large"
+        android:textAppearance="@style/TextAppearance.TaskSubitle"
+        />
+
+    <ImageView
+        android:id="@+id/task_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="H,162:100"
+        app:layout_constraintTop_toBottomOf="@id/task_subtitle"
+        app:layout_constraintStart_toEndOf="@id/keyline"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/padding_large"
+        android:elevation="1dp"
+        />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/task_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/padding_large"
+        />
+
+</merge>

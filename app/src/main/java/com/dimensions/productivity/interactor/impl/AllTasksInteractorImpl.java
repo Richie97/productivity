@@ -23,12 +23,12 @@ public final class AllTasksInteractorImpl implements AllTasksInteractor {
         return Arrays.asList(
                 new DemoTask("Lorem ipsum dolor sit amet", "consectetur adipiscing elit, sed do " +
                         "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " +
-                        "minim veniam, quis nostrud exercitation…", TaskType.BASECAMP),
+                        "minim veniam, quis nostrud exercitation…", TaskType.BASECAMP, null, true),
                 new DemoTask("Ut enim ad minim veniam", "consectetur adipiscing elit, sed do " +
                         "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " +
-                        "minim veniam, quis nostrud exercitation…", TaskType.BASECAMP),
+                        "minim veniam, quis nostrud exercitation…", TaskType.BASECAMP, null, false),
                 new DemoTask("Neque porro quisquam est, qui dolorem", "consectetur adipiscing " +
                         "elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-                        " Ut enim ad minim veniam, quis nostrud exercitation…", TaskType.BASECAMP));
+                        " Ut enim ad minim veniam, quis nostrud exercitation…", TaskType.BASECAMP, null, true));
     }
 }

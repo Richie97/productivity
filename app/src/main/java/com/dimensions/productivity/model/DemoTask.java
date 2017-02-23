@@ -1,13 +1,18 @@
 package com.dimensions.productivity.model;
 
-public class DemoTask implements Task {
-    String title, subtitle;
-    TaskType type;
+import android.support.annotation.Nullable;
 
-    public DemoTask(String title, String subtitle, TaskType type) {
+public class DemoTask implements Task {
+    private final String title, subtitle, imageUrl;
+    private final TaskType type;
+    private final boolean isToday;
+
+    public DemoTask(String title, String subtitle, TaskType type, @Nullable String imageUrl, boolean isToday) {
         this.title = title;
         this.subtitle = subtitle;
         this.type = type;
+        this.imageUrl = imageUrl;
+        this.isToday = isToday;
     }
 
     @Override public String getTitle() {
@@ -24,5 +29,13 @@ public class DemoTask implements Task {
 
     @Override public TaskType getType() {
         return type;
+    }
+
+    @Nullable @Override public String getImageUrl() {
+        return imageUrl;
+    }
+
+    @Override public boolean isToday() {
+        return isToday;
     }
 }

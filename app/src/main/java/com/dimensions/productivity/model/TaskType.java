@@ -1,18 +1,21 @@
 package com.dimensions.productivity.model;
 
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 
 import com.dimensions.productivity.R;
 
 public enum TaskType {
-    TRELLO(R.drawable.ic_trello),
-    KEEP(R.drawable.ic_google_keep),
-    BASECAMP(R.drawable.ic_basecamp),
-    JIRA(R.drawable.ic_jira),
-    CALENDAR(R.drawable.ic_calendar);
+    TRELLO(R.drawable.ic_trello, 0xff026aa7),
+    KEEP(R.drawable.ic_google_keep, 0xffffbb00),
+    BASECAMP(R.drawable.ic_basecamp, 0xff5ecc62),
+    JIRA(R.drawable.ic_jira, 0xff0d3f72),
+    CALENDAR(R.drawable.ic_calendar, 0xff3367d6);
 
     @DrawableRes public final int icon;
-    private TaskType(@DrawableRes int drawableId) {
+    @ColorInt public final int color;
+    TaskType(@DrawableRes int drawableId, @ColorInt int color) {
         icon = drawableId;
+        this.color = color;
     }
 }

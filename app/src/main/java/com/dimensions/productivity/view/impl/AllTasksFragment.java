@@ -7,21 +7,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.dimensions.productivity.R;
 import com.dimensions.productivity.injection.AllTasksViewModule;
 import com.dimensions.productivity.injection.AppComponent;
 import com.dimensions.productivity.injection.DaggerAllTasksViewComponent;
-import com.dimensions.productivity.model.DemoTask;
 import com.dimensions.productivity.model.Task;
 import com.dimensions.productivity.presenter.AllTasksPresenter;
 import com.dimensions.productivity.presenter.loader.PresenterFactory;
 import com.dimensions.productivity.view.AllTasksView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -93,19 +88,15 @@ public final class AllTasksFragment extends BaseFragment<AllTasksPresenter, AllT
     }
 
     class TaskViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.task_title) TextView title;
-        @BindView(R.id.task_subtitle) TextView subtitle;
-        @BindView(R.id.task_service_icon) ImageView icon;
+        TaskView taskView;
 
         TaskViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            taskView = (TaskView) itemView;
         }
 
         void bind(Task task) {
-            title.setText(task.getTitle());
-            subtitle.setText(task.getSubtitle());
-            icon.setImageResource(task.getType().icon);
+            taskView.bind(task);
         }
     }
 }

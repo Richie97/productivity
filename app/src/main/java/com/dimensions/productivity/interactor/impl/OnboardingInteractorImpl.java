@@ -20,7 +20,7 @@ public final class OnboardingInteractorImpl implements OnboardingInteractor {
     public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            tasks.add(new DemoTask("Task "+ i, "Description " + i, TaskType.BASECAMP));
+            tasks.add(new DemoTask("Task "+ i, "Description " + i, TaskType.BASECAMP, null, false));
         }
         return tasks;
     }

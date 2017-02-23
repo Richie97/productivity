@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="TextAppearance.TaskTitle" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/task_title</item>
+    </style>
+
+    <style name="TextAppearance.TaskSubitle" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+</resources>

@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#0097a7</color>
     <color name="colorAccent">#ffeb3b</color>
     <color name="windowBg">#d1d0d0</color>
+    <color name="placeholder">#eeeeee</color>
+    <color name="background_today">#ffffff</color>
+    <color name="background_not_today">#fafafa</color>
+    <color name="task_title_today">#000</color>
+    <color name="task_title_not_today">#888</color>
+    <color name="text_color_secondary">#888</color>
 </resources>

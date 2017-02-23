@@ -72,7 +72,7 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
                         .setPaddingTop(20)
                         .setRelativeScale(0.01f));
         for (int i = 0; i < 20; i++) {
-            mSwipView.addView(new TaskCard(new DemoTask("Task Title " + i, "Subtitle for Task " + i, TaskType.BASECAMP)));
+            mSwipView.addView(new TaskCard(new DemoTask("Task Title " + i, "Subtitle for Task " + i, TaskType.BASECAMP, null, false)));
         }
         mSwipView.enableTouchSwipe();
     }

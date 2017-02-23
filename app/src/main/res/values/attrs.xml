@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TaskView">
+        <attr name="state_today" format="boolean|reference"/>
+    </declare-styleable>
+</resources>
