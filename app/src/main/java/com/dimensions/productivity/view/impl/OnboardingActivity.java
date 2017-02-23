@@ -2,6 +2,9 @@ package com.dimensions.productivity.view.impl;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.GravityCompat;
+import android.util.TypedValue;
+import android.view.Gravity;
 
 import com.dimensions.productivity.R;
 import com.dimensions.productivity.model.DemoTask;
@@ -68,10 +71,11 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
                 .setWidthSwipeDistFactor(15)
                 .setHeightSwipeDistFactor(20)
                 .setSwipeDecor(new SwipeDecor()
-                        .setPaddingTop(20)
-                        .setRelativeScale(0.01f));
-        for (int i = 0; i < 20; i++) {
-            mSwipView.addView(new TaskCard(new DemoTask("Task Title " + i, "Account for Task " + i)));
+                        .setPaddingTop((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -30, getResources().getDisplayMetrics()))
+                        .setViewGravity(Gravity.TOP|Gravity.CENTER)
+                        .setRelativeScale(0.1f));
+        for (Task task : tasks) {
+            mSwipView.addView(new TaskCard(task));
         }
         mSwipView.enableTouchSwipe();
     }

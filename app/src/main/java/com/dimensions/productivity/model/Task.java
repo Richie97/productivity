@@ -5,7 +5,7 @@ package com.dimensions.productivity.model;
  */
 
 public interface Task {
-    String getTitle();
-    String getSubtitle();
+    String getAccount();
+    int getLogoResourceId();
     String getId();
 }

@@ -1,6 +1,7 @@
 package com.dimensions.productivity.card;
 
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dimensions.productivity.R;
@@ -27,10 +28,10 @@ public class TaskCard {
     }
 
     @View(R.id.account)
-    private TextView subtitle;
+    private  TextView accountName;
 
-    @View(R.id.title)
-    private TextView title;
+    @View(R.id.logo)
+    private ImageView logo;
 
 
     @Click(R.id.account)
@@ -40,8 +41,8 @@ public class TaskCard {
 
     @Resolve
     private void onResolve(){
-        title.setText(task.getTitle());
-        subtitle.setText(task.getSubtitle());
+        logo.setImageResource(task.getLogoResourceId());
+        accountName.setText(task.getAccount());
     }
 
     @SwipeOut

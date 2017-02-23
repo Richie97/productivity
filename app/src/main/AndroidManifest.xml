@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.impl.OnboardingActivity" />
+        <activity android:name=".view.impl.OnboardingActivity" android:theme="@style/OnboardingTheme" />
         <activity android:name=".view.impl.OverviewActivity"/>
     </application>
 

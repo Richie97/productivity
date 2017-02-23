@@ -5,25 +5,24 @@ package com.dimensions.productivity.model;
  */
 
 public class DemoTask implements Task {
-    String title, subtitle;
-    public DemoTask(String title, String subtitle) {
-        this.title = title;
-        this.subtitle = subtitle;
+    String account;
+    int logoResourceId;
+    public DemoTask(String account, int logo) {
+        this.account = account;
+        this.logoResourceId = logo;
 
     }
 
-    @Override
-    public String getTitle() {
-        return title;
+    public String getAccount() {
+        return account;
     }
 
-    @Override
-    public String getSubtitle() {
-        return subtitle;
+    public int getLogoResourceId() {
+        return logoResourceId;
     }
 
     @Override
     public String getId() {
-        return title + subtitle;
+        return account + logoResourceId;
     }
 }
