@@ -1,29 +1,22 @@
 package com.dimensions.productivity.model;
 
 /**
- * Created by ericrichardson on 2/22/17.
+ * Created by ericrichardson on 2/23/17.
  */
 
 public class DemoTask implements Task {
-    String title, subtitle;
-    public DemoTask(String title, String subtitle) {
-        this.title = title;
-        this.subtitle = subtitle;
-
+    @Override
+    public String getTaskName() {
+        return "Neque porro quisquam est";
     }
 
     @Override
-    public String getTitle() {
-        return title;
+    public String getTaskDescription() {
+        return "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis...";
     }
 
     @Override
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    @Override
-    public String getId() {
-        return title + subtitle;
+    public int getLogoResourceId() {
+        return 0;
     }
 }

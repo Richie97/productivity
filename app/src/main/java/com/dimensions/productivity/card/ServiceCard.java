@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dimensions.productivity.R;
-import com.dimensions.productivity.model.DemoTask;
 import com.dimensions.productivity.model.ProductivityService;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
@@ -27,24 +26,20 @@ import com.mindorks.placeholderview.annotations.swipe.SwipeOut;
 import com.mindorks.placeholderview.annotations.swipe.SwipeOutState;
 
 /**
- * Created by ericrichardson on 2/23/17.
+ * Created by ericrichardson on 2/22/17.
  */
-@Layout(R.layout.card_task)
-public class TaskCard {
-    private DemoTask task;
+@Layout(R.layout.card_onboarding)
+public class ServiceCard {
     private ProductivityService productivityService;
-    private ServiceCard.OnSwipeCallback callback;
+    private OnSwipeCallback callback;
 
-    public TaskCard(ProductivityService productivityService, ServiceCard.OnSwipeCallback callback) {
+    public ServiceCard(ProductivityService productivityService, OnSwipeCallback callback) {
         this.productivityService = productivityService;
         this.callback = callback;
     }
 
     @View(R.id.account)
-    private TextView taskName;
-
-    @View(R.id.account_header)
-    private TextView taskDetail;
+    private TextView accountName;
 
     @View(R.id.logo)
     private ImageView logo;
@@ -78,7 +73,7 @@ public class TaskCard {
         params.width = size.x > size.y ? width / 2 - padding : width - padding;
         card.setLayoutParams(params);
         logo.setImageResource(productivityService.getLogoResourceId());
-        taskName.setText(productivityService.getAccount());
+        accountName.setText(productivityService.getAccount());
         float alpha = (float) (100 - (position * 10)) / 100;
         card.setAlpha(alpha);
     }
@@ -124,5 +119,4 @@ public class TaskCard {
     public interface OnSwipeCallback {
         void onSwiped();
     }
-
 }
