@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="TaskView">
-        <attr name="state_today" format="boolean|reference"/>
+        <attr name="state_today" format="boolean|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularProgressView">
+        <attr name="cpv_min" format="integer" />
+        <attr name="cpv_max" format="integer" />
+        <attr name="cpv_progress" format="integer" />
+        <attr name="cpv_progressColorStart" format="color" />
+        <attr name="cpv_progressColorEnd" format="color" />
+        <attr name="cpv_remainderColor" format="color" />
+        <attr name="cpv_thickness" format="dimension" />
     </declare-styleable>
 </resources>
