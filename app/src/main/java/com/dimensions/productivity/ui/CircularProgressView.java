@@ -1,6 +1,7 @@
 package com.dimensions.productivity.ui;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -8,12 +9,13 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 
 import com.dimensions.productivity.R;
 
@@ -34,6 +36,8 @@ public class CircularProgressView extends View {
     private Paint foregroundPaint;
 
     private Matrix matrix;
+
+    Shader shader;
 
 
     public CircularProgressView(Context context) {
@@ -171,9 +175,8 @@ public class CircularProgressView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         final int height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
         final int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
-
         matrix.postRotate(270f, width / 2, height / 2);
-        SweepGradient shader = new SweepGradient(width / 2, height / 2, new int[]{progressColorEnd, progressColorStart, progressColorEnd}, new float[]{0, progress / max, 1});
+        shader = new SweepGradient(width / 2, height / 2, new int[]{progressColorEnd, progressColorStart, progressColorEnd}, new float[]{0, progress / max, 1});
         shader.setLocalMatrix(matrix);
         foregroundPaint.setShader(shader);
         final int min = Math.min(width, height);
@@ -191,8 +194,20 @@ public class CircularProgressView extends View {
 
     public void setProgressWithAnimation(float progress) {
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "progress", progress);
-        objectAnimator.setDuration(1500);
-        objectAnimator.setInterpolator(new DecelerateInterpolator());
+        objectAnimator.setDuration(1200);
+        objectAnimator.setInterpolator(new FastOutSlowInInterpolator());
         objectAnimator.start();
+        objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float x = getMeasuredWidth() / 2;
+                float y = getMeasuredHeight() / 2;
+                float p = valueAnimator.getAnimatedFraction();
+                shader = new SweepGradient(x, y, new int[]{progressColorEnd, progressColorStart, progressColorEnd}, new float[]{0, p * progress, 1});
+                shader.setLocalMatrix(matrix);
+                foregroundPaint.setShader(shader);
+                invalidate();
+            }
+        });
     }
 }
