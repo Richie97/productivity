@@ -203,6 +203,7 @@ public class CircularProgressView extends View {
                 float y = getMeasuredHeight() / 2;
                 float p = valueAnimator.getAnimatedFraction();
                 shader = new SweepGradient(x, y, new int[]{progressColorEnd, progressColorStart, progressColorEnd}, new float[]{0, p * progress, 1});
+                matrix.postRotate(270f, x, y);
                 shader.setLocalMatrix(matrix);
                 foregroundPaint.setShader(shader);
                 invalidate();

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.dimensions.productivity.view.impl.OnboardingActivity;
-import com.dimensions.productivity.view.impl.OverviewActivity;
 
 public class MainActivity extends AppCompatActivity {
 

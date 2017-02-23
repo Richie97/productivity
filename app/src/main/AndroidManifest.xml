@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dimensions.productivity">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
@@ -19,18 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.impl.OverviewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".view.impl.OverviewActivity" />
         <activity
             android:name=".view.impl.OnboardingActivity"
             android:theme="@style/OnboardingTheme" />
-        <activity android:name=".view.impl.OrganizeActivity"
-            android:theme="@style/OnboardingTheme"/>
+        <activity
+            android:name=".view.impl.OrganizeActivity"
+            android:theme="@style/OnboardingTheme" />
     </application>
 
 </manifest>
