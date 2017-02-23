@@ -196,7 +196,6 @@ public class CircularProgressView extends View {
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "progress", progress);
         objectAnimator.setDuration(1200);
         objectAnimator.setInterpolator(new FastOutSlowInInterpolator());
-        objectAnimator.start();
         objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -209,5 +208,6 @@ public class CircularProgressView extends View {
                 invalidate();
             }
         });
+        objectAnimator.start();
     }
 }

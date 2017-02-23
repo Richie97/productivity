@@ -18,9 +18,13 @@ import com.dimensions.productivity.presenter.loader.PresenterFactory;
 import com.dimensions.productivity.ui.CircularProgressView;
 import com.dimensions.productivity.view.OverviewView;
 
+import java.util.Calendar;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 public final class OverviewActivity extends BaseActivity<OverviewPresenter, OverviewView>
@@ -31,11 +35,14 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
     @BindView(R.id.overview_viewpager)
     ViewPager viewPager;
 
-    @BindView(R.id.overview_header_today_progress_indicator)
-    CircularProgressView circularProgressView0;
-
     @BindView(R.id.overview_header_title)
-    TextView progressLabel0;
+    TextView title;
+
+    @BindViews({R.id.overview_header_today_progress_indicator, R.id.overview_header_t_minus_1_indicator, R.id.overview_header_t_minus_2_indicator, R.id.overview_header_t_minus_3_indicator, R.id.overview_header_t_minus_4_indicator, R.id.overview_header_t_minus_5_indicator, R.id.overview_header_t_minus_6_indicator})
+    List<CircularProgressView> progressViews;
+
+    @BindViews({R.id.overview_header_today_progress_label, R.id.overview_header_t_minus_1_label, R.id.overview_header_t_minus_2_label, R.id.overview_header_t_minus_3_label, R.id.overview_header_t_minus_4_label, R.id.overview_header_t_minus_5_label, R.id.overview_header_t_minus_6_label})
+    List<TextView> progressLabels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,20 +76,44 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
     @Override
     public void showProgress(int daysAgo, int completedTasks, int totalTasks) {
         Resources resources = getResources();
-        switch (daysAgo) {
-            case 0:
-                circularProgressView0.setMax(totalTasks);
-                circularProgressView0.setProgressWithAnimation(completedTasks);
-                progressLabel0.setText(resources.getQuantityString(R.plurals.dashboard_title, totalTasks, completedTasks, totalTasks));
-                break;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            default:
+
+        if (daysAgo >= 0 && daysAgo <= 7) {
+            CircularProgressView progressView = progressViews.get(daysAgo);
+            TextView progressLabel = progressLabels.get(daysAgo);
+            progressView.setMax(totalTasks);
+            progressView.setProgressWithAnimation(completedTasks);
+            if (daysAgo == 0) {
+                title.setText(resources.getQuantityString(R.plurals.dashboard_title, totalTasks, completedTasks, totalTasks));
+                progressLabel.setText(String.format("%d%%", Math.round((double) completedTasks / totalTasks * 100)));
+            } else {
+                progressLabel.setText(getDayLabel(daysAgo));
+            }
         }
+    }
+
+    private static String getDayLabel(int daysAgo) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -(daysAgo + 1));
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (dayOfWeek) {
+            case 1:
+                return "M";
+            case 2:
+                return "Tu";
+            case 3:
+                return "W";
+            case 4:
+                return "Th";
+            case 5:
+                return "F";
+            case 6:
+                return "Sa";
+            case 7:
+                return "Su";
+        }
+        return "";
     }
 
     class OverviewAdapter extends FragmentStatePagerAdapter {

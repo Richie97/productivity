@@ -86,16 +86,17 @@
         app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
 
         <com.dimensions.productivity.ui.CircularProgressView
+            android:id="@+id/overview_header_t_minus_6_indicator"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            app:cpv_progress="100"
-            app:cpv_progressColorEnd="@color/colorAccent"
-            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_progress="0"
+            app:cpv_progressColorStart="#FFF"
             app:cpv_remainderColor="#64FFFFFF"
             app:cpv_thickness="2dp" />
 
         <TextView
+            android:id="@+id/overview_header_t_minus_6_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -116,16 +117,17 @@
         app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
 
         <com.dimensions.productivity.ui.CircularProgressView
+            android:id="@+id/overview_header_t_minus_5_indicator"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            app:cpv_progress="75"
-            app:cpv_progressColorEnd="@color/colorAccent"
-            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_progress="0"
+            app:cpv_progressColorStart="#FFF"
             app:cpv_remainderColor="#64FFFFFF"
             app:cpv_thickness="2dp" />
 
         <TextView
+            android:id="@+id/overview_header_t_minus_5_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -146,16 +148,17 @@
         app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
 
         <com.dimensions.productivity.ui.CircularProgressView
+            android:id="@+id/overview_header_t_minus_4_indicator"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            app:cpv_progress="25"
-            app:cpv_progressColorEnd="@color/colorAccent"
-            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_progress="0"
+            app:cpv_progressColorStart="#FFF"
             app:cpv_remainderColor="#64FFFFFF"
             app:cpv_thickness="2dp" />
 
         <TextView
+            android:id="@+id/overview_header_t_minus_4_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -176,16 +179,17 @@
         app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
 
         <com.dimensions.productivity.ui.CircularProgressView
+            android:id="@+id/overview_header_t_minus_3_indicator"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            app:cpv_progress="100"
-            app:cpv_progressColorEnd="@color/colorAccent"
-            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_progress="0"
+            app:cpv_progressColorStart="#FFF"
             app:cpv_remainderColor="#64FFFFFF"
             app:cpv_thickness="2dp" />
 
         <TextView
+            android:id="@+id/overview_header_t_minus_3_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -206,16 +210,17 @@
         app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
 
         <com.dimensions.productivity.ui.CircularProgressView
+            android:id="@+id/overview_header_t_minus_2_indicator"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            app:cpv_progress="75"
-            app:cpv_progressColorEnd="@color/colorAccent"
-            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_progress="0"
+            app:cpv_progressColorStart="#FFF"
             app:cpv_remainderColor="#64FFFFFF"
             app:cpv_thickness="2dp" />
 
         <TextView
+            android:id="@+id/overview_header_t_minus_2_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -236,16 +241,17 @@
         app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
 
         <com.dimensions.productivity.ui.CircularProgressView
+            android:id="@+id/overview_header_t_minus_1_indicator"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            app:cpv_progress="25"
-            app:cpv_progressColorEnd="@color/colorAccent"
-            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_progress="0"
+            app:cpv_progressColorStart="#FFF"
             app:cpv_remainderColor="#64FFFFFF"
             app:cpv_thickness="2dp" />
 
         <TextView
+            android:id="@+id/overview_header_t_minus_1_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
