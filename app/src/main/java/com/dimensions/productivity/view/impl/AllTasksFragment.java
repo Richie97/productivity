@@ -60,7 +60,7 @@ public final class AllTasksFragment
         tasksList.setAdapter(adapter);
         tasksList.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
         touchHelper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+                new ItemTouchHelper.SimpleCallback(0, 0) {
             @Override public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder
                     viewHolder, RecyclerView.ViewHolder target) {
                 adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
@@ -74,6 +74,14 @@ public final class AllTasksFragment
             @Override public boolean canDropOver(RecyclerView recyclerView, RecyclerView
                     .ViewHolder current, RecyclerView.ViewHolder target) {
                 return target instanceof TaskViewHolder;
+            }
+
+            @Override public int getDragDirs(
+                    RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                if (viewHolder instanceof TaskViewHolder) {
+                    return ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+                }
+                return 0;
             }
                 });
         touchHelper.attachToRecyclerView(tasksList);
