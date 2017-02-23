@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Productivity</string>
+
+    <plurals name="dashboard_title">
+        <item quantity="one"><b>%d</b> of <b>%d</b> task completed</item>
+        <item quantity="other"><b>%d</b> of <b>%d</b> tasks completed</item>
+    </plurals>
 </resources>
