@@ -59,8 +59,8 @@
             app:cpv_max="10"
             app:cpv_min="0"
             app:cpv_progress="0"
-            app:cpv_progressColorEnd="@color/colorAccent"
-            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_progressColorEnd="@color/accent"
+            app:cpv_progressColorStart="@color/accent_pale"
             app:cpv_remainderColor="#64FFFFFF"
             app:cpv_thickness="10dp"
             app:layout_collapseMode="parallax" />

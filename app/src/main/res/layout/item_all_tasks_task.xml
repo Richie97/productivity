@@ -10,4 +10,5 @@
     android:clickable="true"
     android:background="@drawable/task_background"
     android:stateListAnimator="@animator/raise"
+    android:elevation="2dp"
     />
