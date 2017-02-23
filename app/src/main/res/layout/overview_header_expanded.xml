@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/overview_header_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_scrollFlags="scroll">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="12dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <TextView
+        android:id="@+id/overview_header_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:textColor="#FFF"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/overview_header_today_progress_container"
+        app:layout_constraintEnd_toStartOf="@+id/overview_header_today_progress_container"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_begin"
+        app:layout_constraintTop_toTopOf="@+id/overview_header_today_progress_container" />
+
+    <RelativeLayout
+        android:id="@+id/overview_header_today_progress_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/overview_header_t_minus_6"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/overview_header_title"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top"
+        app:layout_constraintVertical_bias="1">
+
+        <com.dimensions.productivity.ui.CircularProgressView
+            android:id="@+id/overview_header_today_progress_indicator"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:cpv_max="10"
+            app:cpv_min="0"
+            app:cpv_progress="0"
+            app:cpv_progressColorEnd="@color/colorAccent"
+            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_remainderColor="#64FFFFFF"
+            app:cpv_thickness="10dp"
+            app:layout_collapseMode="parallax" />
+
+        <TextView
+            android:id="@+id/overview_header_today_progress_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-light"
+            android:text="60%"
+            android:textColor="#FFF"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/overview_header_t_minus_6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/overview_header_layout"
+        app:layout_constraintEnd_toStartOf="@+id/overview_header_t_minus_5"
+        app:layout_constraintStart_toStartOf="@id/guideline_begin"
+        app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
+
+        <com.dimensions.productivity.ui.CircularProgressView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            app:cpv_progress="100"
+            app:cpv_progressColorEnd="@color/colorAccent"
+            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_remainderColor="#64FFFFFF"
+            app:cpv_thickness="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="M"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/overview_header_t_minus_5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/overview_header_layout"
+        app:layout_constraintEnd_toStartOf="@+id/overview_header_t_minus_4"
+        app:layout_constraintStart_toEndOf="@+id/overview_header_t_minus_6"
+        app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
+
+        <com.dimensions.productivity.ui.CircularProgressView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            app:cpv_progress="75"
+            app:cpv_progressColorEnd="@color/colorAccent"
+            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_remainderColor="#64FFFFFF"
+            app:cpv_thickness="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="Tu"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/overview_header_t_minus_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/overview_header_layout"
+        app:layout_constraintEnd_toStartOf="@+id/overview_header_t_minus_3"
+        app:layout_constraintStart_toEndOf="@+id/overview_header_t_minus_5"
+        app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
+
+        <com.dimensions.productivity.ui.CircularProgressView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            app:cpv_progress="25"
+            app:cpv_progressColorEnd="@color/colorAccent"
+            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_remainderColor="#64FFFFFF"
+            app:cpv_thickness="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="W"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/overview_header_t_minus_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/overview_header_layout"
+        app:layout_constraintEnd_toStartOf="@+id/overview_header_t_minus_2"
+        app:layout_constraintStart_toEndOf="@+id/overview_header_t_minus_4"
+        app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
+
+        <com.dimensions.productivity.ui.CircularProgressView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            app:cpv_progress="100"
+            app:cpv_progressColorEnd="@color/colorAccent"
+            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_remainderColor="#64FFFFFF"
+            app:cpv_thickness="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="Th"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/overview_header_t_minus_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/overview_header_layout"
+        app:layout_constraintEnd_toStartOf="@+id/overview_header_t_minus_1"
+        app:layout_constraintStart_toEndOf="@+id/overview_header_t_minus_3"
+        app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
+
+        <com.dimensions.productivity.ui.CircularProgressView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            app:cpv_progress="75"
+            app:cpv_progressColorEnd="@color/colorAccent"
+            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_remainderColor="#64FFFFFF"
+            app:cpv_thickness="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="F"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/overview_header_t_minus_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/overview_header_layout"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        app:layout_constraintStart_toEndOf="@+id/overview_header_t_minus_2"
+        app:layout_constraintTop_toBottomOf="@id/overview_header_today_progress_container">
+
+        <com.dimensions.productivity.ui.CircularProgressView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            app:cpv_progress="25"
+            app:cpv_progressColorEnd="@color/colorAccent"
+            app:cpv_progressColorStart="@color/colorAccentPale"
+            app:cpv_remainderColor="#64FFFFFF"
+            app:cpv_thickness="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="Sa"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

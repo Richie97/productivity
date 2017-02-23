@@ -1,13 +1,11 @@
 package com.dimensions.productivity.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.dimensions.productivity.R;
-import com.dimensions.productivity.interactor.OrganizeInteractor;
 import com.dimensions.productivity.view.impl.OnboardingActivity;
-import com.dimensions.productivity.view.impl.OrganizeActivity;
+import com.dimensions.productivity.view.impl.OverviewActivity;
 
 public class MainActivity extends AppCompatActivity {
 

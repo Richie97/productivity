@@ -2,9 +2,10 @@ package com.dimensions.productivity.presenter.impl;
 
 import android.support.annotation.NonNull;
 
+import com.dimensions.productivity.interactor.OverviewInteractor;
+import com.dimensions.productivity.model.Progress;
 import com.dimensions.productivity.presenter.OverviewPresenter;
 import com.dimensions.productivity.view.OverviewView;
-import com.dimensions.productivity.interactor.OverviewInteractor;
 
 import javax.inject.Inject;
 
@@ -26,7 +27,14 @@ public final class OverviewPresenterImpl extends BasePresenterImpl<OverviewView>
     public void onStart(boolean firstStart) {
         super.onStart(firstStart);
 
-        // Your code here. Your view is available using mView and will not be null until next onStop()
+        for (int i = 0; i < 7; i++) {
+            Progress progress = mInteractor.getProgress(i);
+            if (progress != null) {
+                mView.showProgress(progress.getDaysAgo(), progress.getCompletedTasks(), progress.getTotalTasks());
+            } else {
+                mView.showProgress(i, 0, 1);
+            }
+        }
     }
 
     @Override

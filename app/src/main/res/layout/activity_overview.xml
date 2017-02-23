@@ -1,56 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:theme="@style/AppTheme">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <include layout="@layout/overview_header_expanded"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/overview_tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/overview_tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="bottom"
-                app:tabContentStart="72dp"
-                app:tabMode="scrollable" />
-
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/overview_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                app:layout_collapseMode="parallax"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                </RelativeLayout>
-            </android.support.v7.widget.Toolbar>
-
-            <com.dimensions.productivity.ui.CircularProgressView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="10dp"
-                app:cpv_progress="90"
-                app:cpv_progressColorEnd="@color/colorAccent"
-                app:cpv_progressColorStart="@color/colorAccentPale"
-                app:cpv_remainderColor="#64FFFFFF"
-                app:cpv_thickness="15dp" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
+            android:layout_height="wrap_content"
+            android:minHeight="?actionBarSize"
+            android:layout_gravity="bottom"
+            app:tabMode="fixed"/>
 
     </android.support.design.widget.AppBarLayout>
 
