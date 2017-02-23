@@ -4,6 +4,7 @@ import com.dimensions.productivity.R;
 import com.dimensions.productivity.interactor.OnboardingInteractor;
 import com.dimensions.productivity.model.DemoService;
 import com.dimensions.productivity.model.ProductivityService;
+import com.dimensions.productivity.model.TaskType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 public final class OnboardingInteractorImpl implements OnboardingInteractor {
-    List<ProductivityService> services = new ArrayList<>();
+    List<ProductivityService> services = new ArrayList<ProductivityService>(){{
+        add(new DemoService("dimensions@google.com", R.drawable.jira_logo));
+        add(new DemoService("dimensions@google.com", R.drawable.bc_logo));
+        add(new DemoService("dimensions@google.com", TaskType.CALENDAR.icon));
+        add(new DemoService("dimensions@google.com", TaskType.KEEP.icon));
+        add(new DemoService("dimensions@google.com", TaskType.TRELLO.icon));
+    }};
 
     @Inject
     public OnboardingInteractorImpl() {
@@ -20,11 +27,6 @@ public final class OnboardingInteractorImpl implements OnboardingInteractor {
 
     @Override
     public List<ProductivityService> getTasks() {
-        if (services.isEmpty()) {
-            for (int i = 0; i < 10; i++) {
-                services.add(new DemoService("dimensions@google.com", i % 2 == 0 ? R.drawable.jira_logo : R.drawable.bc_logo));
-            }
-        }
         return services;
     }
 

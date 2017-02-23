@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.dimensions.productivity.view.impl.OnboardingActivity;
 import com.dimensions.productivity.view.impl.OverviewActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, OverviewActivity.class));
+        startActivity(new Intent(this, OnboardingActivity.class));
         finish();
     }
 }

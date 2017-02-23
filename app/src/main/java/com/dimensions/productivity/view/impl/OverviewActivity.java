@@ -3,6 +3,7 @@ package com.dimensions.productivity.view.impl;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -35,6 +36,9 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
     @BindView(R.id.overview_viewpager)
     ViewPager viewPager;
 
+    @BindView(R.id.overview_tabLayout)
+    TabLayout tabs;
+
     @BindView(R.id.overview_header_title)
     TextView title;
 
@@ -46,6 +50,7 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         ButterKnife.bind(this);
@@ -56,6 +61,7 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
         super.onStart();
         mPresenter.onStart(true);
         viewPager.setAdapter(new OverviewAdapter(getSupportFragmentManager()));
+        tabs.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -140,6 +146,18 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
         @Override
         public int getCount() {
             return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getString(R.string.todays_tasks);
+                case 1:
+                    return getString(R.string.later_tasks);
+                default:
+                    throw new IllegalArgumentException();
+            }
         }
     }
 }
