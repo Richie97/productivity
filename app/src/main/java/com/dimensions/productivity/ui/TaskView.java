@@ -1,6 +1,7 @@
 package com.dimensions.productivity.ui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.MotionEventCompat;
@@ -21,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TaskView extends ConstraintLayout {
+
+    private boolean showHandle;
 
     public interface Listener {
         void onDragStart();
@@ -45,6 +48,8 @@ public class TaskView extends ConstraintLayout {
     public TaskView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.task_view, this, true);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TaskView);
+        showHandle = a.getBoolean(R.styleable.TaskView_showHandle, true);
     }
 
     @Override protected void onFinishInflate() {
@@ -61,6 +66,9 @@ public class TaskView extends ConstraintLayout {
         };
         dragHandle.setOnTouchListener(dragTouchListener);
         icon.setOnTouchListener(dragTouchListener);
+        if(!showHandle){
+            dragHandle.setVisibility(INVISIBLE);
+        }
     }
 
     @Override public int[] onCreateDrawableState(int extraSpace) {

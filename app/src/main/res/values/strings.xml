@@ -14,5 +14,6 @@
     <string name="all_tasks">All tasks</string>
     <string name="organize">Organize</string>
     <string name="organize_text">Select the tasks you want to work on by swiping right or work on list generated just for you</string>
+    <string name="generate_list">Generate List</string>
 
 </resources>

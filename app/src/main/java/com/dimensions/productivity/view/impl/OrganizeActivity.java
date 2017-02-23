@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.TextView;
 
 import com.dimensions.productivity.R;
 import com.dimensions.productivity.card.ServiceCard;
@@ -32,6 +34,10 @@ public final class OrganizeActivity extends BaseActivity<OrganizePresenter, Orga
 
     @BindView(R.id.stack)
     SwipePlaceHolderView mSwipView;
+    @BindView(R.id.generate)
+    TextView generate;
+    @BindView(R.id.imageView)
+    View logo;
 
     // Your presenter is available using the mPresenter variable
 
@@ -42,9 +48,17 @@ public final class OrganizeActivity extends BaseActivity<OrganizePresenter, Orga
         ButterKnife.bind(this);
         mSwipView.addItemRemoveListener(count -> {
             if (count == 0) {
-                startActivity(new Intent(OrganizeActivity.this, OverviewActivity.class));
+                startActivity(new Intent(this, OverviewActivity.class));
                 finish();
             }
+        });
+        generate.setOnClickListener(v -> {
+            startActivity(new Intent(this, OverviewActivity.class));
+            finish();
+        });
+        logo.setOnClickListener(v -> {
+            startActivity(new Intent(this, OverviewActivity.class));
+            finish();
         });
     }
 
