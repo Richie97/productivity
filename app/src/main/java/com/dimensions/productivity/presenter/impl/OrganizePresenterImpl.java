@@ -3,6 +3,7 @@ package com.dimensions.productivity.presenter.impl;
 import android.support.annotation.NonNull;
 
 import com.dimensions.productivity.model.ProductivityService;
+import com.dimensions.productivity.model.Task;
 import com.dimensions.productivity.presenter.OrganizePresenter;
 import com.dimensions.productivity.view.OrganizeView;
 import com.dimensions.productivity.interactor.OrganizeInteractor;
@@ -52,7 +53,7 @@ public final class OrganizePresenterImpl extends BasePresenterImpl<OrganizeView>
     @Override
     public void onSwipe() {
         mInteractor.onSwipe();
-        List<ProductivityService> productivityServices = mInteractor.getTasks();
+        List<Task> productivityServices = mInteractor.getTasks();
         mView.showTasks(productivityServices);
     }
 }
