@@ -3,4 +3,6 @@
     <string name="connect">Connect</string>
     <string name="connect_text">Here are some of the existing services we found. Swipe right to connect them.</string>
     <string name="account_signed_in">You are currently signed with</string>
+    <string name="todays_tasks">Today\'s tasks</string>
+    <string name="later_tasks">Other tasks</string>
 </resources>

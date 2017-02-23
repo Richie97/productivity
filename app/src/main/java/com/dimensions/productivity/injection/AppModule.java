@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.dimensions.productivity.App;
+import com.squareup.picasso.Picasso;
 
 import dagger.Module;
 import dagger.Provides;
