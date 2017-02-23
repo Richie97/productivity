@@ -3,6 +3,7 @@ package com.dimensions.productivity.view.impl;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -25,34 +26,27 @@ import butterknife.ButterKnife;
 
 public final class OverviewActivity extends BaseActivity<OverviewPresenter, OverviewView>
         implements OverviewView {
-    @Inject
-    PresenterFactory<OverviewPresenter> mPresenterFactory;
+    @Inject PresenterFactory<OverviewPresenter> mPresenterFactory;
 
-    @BindView(R.id.overview_viewpager)
-    ViewPager viewPager;
+    @BindView(R.id.overview_viewpager) ViewPager viewPager;
+    @BindView(R.id.overview_header_today_progress_indicator) CircularProgressView circularProgressView0;
+    @BindView(R.id.overview_header_title) TextView progressLabel0;
+    @BindView(R.id.overview_tabLayout) TabLayout tabs;
 
-    @BindView(R.id.overview_header_today_progress_indicator)
-    CircularProgressView circularProgressView0;
-
-    @BindView(R.id.overview_header_title)
-    TextView progressLabel0;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         ButterKnife.bind(this);
     }
 
-    @Override
-    protected void onStart() {
+    @Override protected void onStart() {
         super.onStart();
         mPresenter.onStart(true);
         viewPager.setAdapter(new OverviewAdapter(getSupportFragmentManager()));
+        tabs.setupWithViewPager(viewPager);
     }
 
-    @Override
-    protected void setupComponent(@NonNull AppComponent parentComponent) {
+    @Override protected void setupComponent(@NonNull AppComponent parentComponent) {
         DaggerOverviewViewComponent.builder()
                 .appComponent(parentComponent)
                 .overviewViewModule(new OverviewViewModule())
@@ -60,14 +54,11 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
                 .inject(this);
     }
 
-    @NonNull
-    @Override
-    protected PresenterFactory<OverviewPresenter> getPresenterFactory() {
+    @NonNull @Override protected PresenterFactory<OverviewPresenter> getPresenterFactory() {
         return mPresenterFactory;
     }
 
-    @Override
-    public void showProgress(int daysAgo, int completedTasks, int totalTasks) {
+    @Override public void showProgress(int daysAgo, int completedTasks, int totalTasks) {
         Resources resources = getResources();
         switch (daysAgo) {
             case 0:
@@ -94,8 +85,7 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
             super(fm);
         }
 
-        @Override
-        public Fragment getItem(int position) {
+        @Override public Fragment getItem(int position) {
             switch (position) {
                 case 0:
                     return overviewFragment;
@@ -106,9 +96,19 @@ public final class OverviewActivity extends BaseActivity<OverviewPresenter, Over
             }
         }
 
-        @Override
-        public int getCount() {
+        @Override public int getCount() {
             return 2;
+        }
+
+        @Override public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getString(R.string.todays_tasks);
+                case 1:
+                    return getString(R.string.later_tasks);
+                default:
+                    throw new IllegalArgumentException();
+            }
         }
     }
 }
