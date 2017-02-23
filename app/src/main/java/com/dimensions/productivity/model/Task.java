@@ -8,4 +8,5 @@ public interface Task {
     String getTitle();
     String getSubtitle();
     String getId();
+    TaskType getType();
 }
