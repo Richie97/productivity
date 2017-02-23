@@ -38,8 +38,14 @@ public final class OrganizeActivity extends BaseActivity<OrganizePresenter, Orga
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_onboarding);
+        setContentView(R.layout.activity_organize);
         ButterKnife.bind(this);
+        mSwipView.addItemRemoveListener(count -> {
+            if (count == 0) {
+                startActivity(new Intent(OrganizeActivity.this, OverviewActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
@@ -67,12 +73,7 @@ public final class OrganizeActivity extends BaseActivity<OrganizePresenter, Orga
                 .setSwipeDecor(new SwipeDecor()
                         .setPaddingTop((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -30, getResources().getDisplayMetrics()))
                         .setRelativeScale(0.1f));
-        mSwipView.addItemRemoveListener(count -> {
-            if (count == 0) {
-                startActivity(new Intent(OrganizeActivity.this, OverviewActivity.class));
-                finish();
-            }
-        });
+
         for (Task task : tasks) {
             mSwipView.addView(new TaskCard(task, this));
         }

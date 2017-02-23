@@ -10,6 +10,26 @@
 
    <com.dimensions.productivity.ui.TaskView
        android:id="@+id/task"
+       android:paddingTop="16dp"
+       android:paddingBottom="16dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"/>
+   <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="0dp"
+       android:layout_height="0dp"
+       android:background="#40000000"
+       android:visibility="gone"
+       android:id="@+id/overlay"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+
+      <ImageView
+          android:id="@+id/overlay_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:src="@drawable/ic_check" />
+   </FrameLayout>
 </android.support.v7.widget.CardView>

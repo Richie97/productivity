@@ -16,6 +16,7 @@ import com.dimensions.productivity.R;
 import com.dimensions.productivity.model.DemoTask;
 import com.dimensions.productivity.model.ProductivityService;
 import com.dimensions.productivity.model.Task;
+import com.dimensions.productivity.ui.TaskView;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Position;
@@ -36,19 +37,13 @@ public class TaskCard {
     private Task task;
     private TaskCard.OnSwipeCallback callback;
 
-    public TaskCard(Task productivityService, TaskCard.OnSwipeCallback callback) {
-        this.task = productivityService;
+    public TaskCard(Task task, TaskCard.OnSwipeCallback callback) {
+        this.task = task;
         this.callback = callback;
     }
 
-    @View(R.id.account)
-    private TextView taskName;
-
-    @View(R.id.account_header)
-    private TextView taskDetail;
-
-    @View(R.id.logo)
-    private ImageView logo;
+    @View(R.id.task)
+    private TaskView taskView;
 
     @View(R.id.card)
     private ViewGroup card;
@@ -62,11 +57,6 @@ public class TaskCard {
     @Position
     int position;
 
-    @Click(R.id.account)
-    private void onClick() {
-        Log.d("DEBUG", "profileImageView");
-    }
-
     @Resolve
     private void onResolve() {
         WindowManager wm = (WindowManager) card.getContext().getSystemService(Context.WINDOW_SERVICE);
@@ -78,8 +68,7 @@ public class TaskCard {
         int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, card.getContext().getResources().getDisplayMetrics());
         params.width = size.x > size.y ? width / 2 - padding : width - padding;
         card.setLayoutParams(params);
-        Picasso.with(logo.getContext()).load(task.getImageUrl()).into(logo);
-        taskName.setText(task.getTitle());
+        taskView.bind(task, null);
         float alpha = (float) (100 - (position * 10)) / 100;
         card.setAlpha(alpha);
     }
