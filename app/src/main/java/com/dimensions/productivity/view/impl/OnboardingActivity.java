@@ -39,6 +39,12 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
         ButterKnife.bind(this);
+        mSwipView.addItemRemoveListener(count -> {
+            if(count == 0) {
+                startActivity(new Intent(OnboardingActivity.this, OrganizeActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
@@ -71,12 +77,6 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
                 .setSwipeDecor(new SwipeDecor()
                         .setPaddingTop((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -30, getResources().getDisplayMetrics()))
                         .setRelativeScale(0.1f));
-        mSwipView.addItemRemoveListener(count -> {
-            if(count == 0) {
-                startActivity(new Intent(OnboardingActivity.this, OrganizeActivity.class));
-                finish();
-            }
-        });
         for (ProductivityService productivityService : productivityServices) {
             mSwipView.addView(new ServiceCard(productivityService, this));
         }

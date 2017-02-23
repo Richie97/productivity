@@ -30,7 +30,8 @@ public final class OrganizePresenterImpl extends BasePresenterImpl<OrganizeView>
     public void onStart(boolean firstStart) {
         super.onStart(firstStart);
 
-        // Your code here. Your view is available using mView and will not be null until next onStop()
+        List<Task> productivityServices = mInteractor.getTasks();
+        mView.showTasks(productivityServices);
     }
 
     @Override
@@ -53,7 +54,7 @@ public final class OrganizePresenterImpl extends BasePresenterImpl<OrganizeView>
     @Override
     public void onSwipe() {
         mInteractor.onSwipe();
-        List<Task> productivityServices = mInteractor.getTasks();
-        mView.showTasks(productivityServices);
+        List<Task> tasks = mInteractor.getTasks();
+        mView.showTasks(tasks);
     }
 }
