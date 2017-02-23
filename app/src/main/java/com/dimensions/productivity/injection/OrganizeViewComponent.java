@@ -6,7 +6,6 @@ import dagger.Component;
 
 @ActivityScope
 @Component(dependencies = AppComponent.class, modules = OrganizeViewModule.class)
-public interface OrganizeViewComponent 
-{
+public interface OrganizeViewComponent {
     void inject(OrganizeActivity activity);
 }

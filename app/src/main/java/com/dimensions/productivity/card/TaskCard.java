@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.dimensions.productivity.R;
 import com.dimensions.productivity.model.DemoTask;
 import com.dimensions.productivity.model.ProductivityService;
+import com.dimensions.productivity.model.Task;
 import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Position;
@@ -25,18 +26,18 @@ import com.mindorks.placeholderview.annotations.swipe.SwipeIn;
 import com.mindorks.placeholderview.annotations.swipe.SwipeInState;
 import com.mindorks.placeholderview.annotations.swipe.SwipeOut;
 import com.mindorks.placeholderview.annotations.swipe.SwipeOutState;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by ericrichardson on 2/23/17.
  */
 @Layout(R.layout.card_task)
 public class TaskCard {
-    private DemoTask task;
-    private ProductivityService productivityService;
-    private ServiceCard.OnSwipeCallback callback;
+    private Task task;
+    private TaskCard.OnSwipeCallback callback;
 
-    public TaskCard(ProductivityService productivityService, ServiceCard.OnSwipeCallback callback) {
-        this.productivityService = productivityService;
+    public TaskCard(Task productivityService, TaskCard.OnSwipeCallback callback) {
+        this.task = productivityService;
         this.callback = callback;
     }
 
@@ -77,8 +78,8 @@ public class TaskCard {
         int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, card.getContext().getResources().getDisplayMetrics());
         params.width = size.x > size.y ? width / 2 - padding : width - padding;
         card.setLayoutParams(params);
-        logo.setImageResource(productivityService.getLogoResourceId());
-        taskName.setText(productivityService.getAccount());
+        Picasso.with(logo.getContext()).load(task.getImageUrl()).into(logo);
+        taskName.setText(task.getTitle());
         float alpha = (float) (100 - (position * 10)) / 100;
         card.setAlpha(alpha);
     }

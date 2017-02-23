@@ -10,8 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".view.impl.OverviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.impl.OnboardingActivity" android:theme="@style/OnboardingTheme" />
-
+        <activity
+            android:name=".view.impl.OnboardingActivity"
+            android:theme="@style/OnboardingTheme" />
+        <activity android:name=".view.impl.OrganizeActivity"
+            android:theme="@style/OnboardingTheme"/>
     </application>
 
 </manifest>

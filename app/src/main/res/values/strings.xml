@@ -5,4 +5,6 @@
     <string name="account_signed_in">You are currently signed with</string>
     <string name="todays_tasks">Today\'s tasks</string>
     <string name="later_tasks">Other tasks</string>
+    <string name="organize">Organize</string>
+    <string name="organize_text">Select the tasks you want to work on by swiping right or work on list generated just for you</string>
 </resources>

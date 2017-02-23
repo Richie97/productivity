@@ -12,25 +12,20 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public final class OrganizeViewModule 
-{
-	@Provides
-	public OrganizeInteractor provideInteractor()
-	{
-		return new OrganizeInteractorImpl();
-	}
+public final class OrganizeViewModule {
+    @Provides
+    public OrganizeInteractor provideInteractor() {
+        return new OrganizeInteractorImpl();
+    }
 
-	@Provides
-	public PresenterFactory<OrganizePresenter> providePresenterFactory(@NonNull final OrganizeInteractor interactor)
-	{
-		return new PresenterFactory<OrganizePresenter>()
-        {
+    @Provides
+    public PresenterFactory<OrganizePresenter> providePresenterFactory(@NonNull final OrganizeInteractor interactor) {
+        return new PresenterFactory<OrganizePresenter>() {
             @NonNull
             @Override
-            public OrganizePresenter create()
-            {
+            public OrganizePresenter create() {
                 return new OrganizePresenterImpl(interactor);
             }
         };
-	}
+    }
 }

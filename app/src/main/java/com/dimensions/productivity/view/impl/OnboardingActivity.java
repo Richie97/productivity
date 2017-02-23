@@ -1,5 +1,6 @@
 package com.dimensions.productivity.view.impl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
@@ -15,6 +16,7 @@ import com.dimensions.productivity.presenter.loader.PresenterFactory;
 import com.dimensions.productivity.view.OnboardingView;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
+import com.mindorks.placeholderview.listeners.ItemRemovedListener;
 
 import java.util.List;
 
@@ -29,7 +31,6 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
 
     @BindView(R.id.stack)
     SwipePlaceHolderView mSwipView;
-    List<ProductivityService> services;
 
     // Your presenter is available using the mPresenter variable
 
@@ -70,6 +71,12 @@ public final class OnboardingActivity extends BaseActivity<OnboardingPresenter, 
                 .setSwipeDecor(new SwipeDecor()
                         .setPaddingTop((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -30, getResources().getDisplayMetrics()))
                         .setRelativeScale(0.1f));
+        mSwipView.addItemRemoveListener(count -> {
+            if(count == 0) {
+                startActivity(new Intent(OnboardingActivity.this, OrganizeActivity.class));
+                finish();
+            }
+        });
         for (ProductivityService productivityService : productivityServices) {
             mSwipView.addView(new ServiceCard(productivityService, this));
         }

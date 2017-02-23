@@ -1,6 +1,11 @@
 package com.dimensions.productivity.interactor;
 
-public interface OrganizeInteractor extends BaseInteractor
-{
-	
+import com.dimensions.productivity.model.ProductivityService;
+
+import java.util.List;
+
+public interface OrganizeInteractor extends BaseInteractor {
+    List<ProductivityService> getTasks();
+
+    void onSwipe();
 }
