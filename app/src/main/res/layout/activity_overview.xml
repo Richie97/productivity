@@ -7,7 +7,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="256dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/AppTheme">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -22,18 +22,23 @@
                 app:tabContentStart="72dp"
                 app:tabMode="scrollable" />
 
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/overview_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Heeey Buddy" />
+                <com.dimensions.productivity.ui.CircularProgressView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    app:cpv_progress="60"
+                    app:cpv_progressColor="#2AE9FD"
+                    app:cpv_thickness="20dp"
+                    app:layout_collapseMode="pin" />
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
