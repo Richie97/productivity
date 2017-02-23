@@ -22,31 +22,26 @@ public final class AllTasksInteractorImpl implements AllTasksInteractor {
     public List<Task> getFakeTasks() {
         return Arrays.asList(
                 new DemoTask(
-                        "Lorem ipsum dolor sit amet",
-                        "consectetur adipiscing elit, sed do " +
-                        "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " +
-                        "minim veniam, quis nostrud exercitation…",
+                        "New Icons",
+                        "Create new SVG icons for the favorite and list actions in the app. Send to Dan who is helping out on the implementation.",
                         TaskType.TRELLO, null, true),
-                new DemoTask("Ut enim ad minim veniam",
-                        "consectetur adipiscing elit, sed do " +
-                        "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " +
-                        "minim veniam, quis nostrud exercitation…",
+                new DemoTask("Interview Feedback",
+                        "Submit feedback about Kelsey's interview for product designer by next Monday, the 21st.",
                         TaskType.KEEP, null, true),
-                new DemoTask("Neque porro quisquam est, qui dolorem",
-                        "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-                        " Ut enim ad minim veniam, quis nostrud exercitation…",
+                new DemoTask("New Sketches",
+                        "Try out new sketches for the profile view of the watch that includes a larger profile image.",
                         TaskType.BASECAMP, "http://s3images.coroflot.com/user_files/individual_files/original_74719_hskMU1zuKR21TkBZy63e6rUK0.jpg", true),
-                new DemoTask("Quis autem vel eum iure reprehenderit qui in ea voluptate",
-                        "consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
+                new DemoTask("Update Listing Card Code",
+                        "Update code on the listing card to the new card module and do visual QA on all device sizes. Make sure spacing stays the same.",
                         TaskType.JIRA, null, true),
-                new DemoTask("Lorem ipsum dolor sit amet",
-                        "consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",
+                new DemoTask("Team Retrospective",
+                        "Wednesday, Feb, 20th. 30 mins at Seawall Design Room. Let's talk about the last month. ",
                         TaskType.CALENDAR, null, true),
-                new DemoTask("Lorem ipsum dolor sit amet",
-                        "consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",
-                        TaskType.BASECAMP, "http://www.sjsu.edu/design/design_programs/industrial_design_program/id_cover_pics/3N3O4619%20copy.JPG", true),
-                new DemoTask("Lorem ipsum dolor sit amet",
-                        "consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
-                        TaskType.TRELLO, null, false));
+                new DemoTask("[Android Design] Checkout",
+                        "Checkout flow for Android. Includes cart, ,checkout and order review.",
+                        TaskType.JIRA, null, false),
+                new DemoTask("Duck Research",
+                        "Sort our mallards from our Canadian Geese",
+                        TaskType.BASECAMP, "http://www.sjsu.edu/design/design_programs/industrial_design_program/id_cover_pics/3N3O4619%20copy.JPG", false));
     }
 }
