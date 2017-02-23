@@ -7,6 +7,8 @@ import com.dimensions.productivity.injection.AppComponent;
 import com.dimensions.productivity.injection.AppModule;
 import com.dimensions.productivity.injection.DaggerAppComponent;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 public final class App extends Application {
     private AppComponent mAppComponent;
 
@@ -17,6 +19,10 @@ public final class App extends Application {
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Roboto-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
     }
 
     @NonNull

@@ -1,28 +1,22 @@
 package com.dimensions.productivity.model;
 
 /**
- * Created by ericrichardson on 2/22/17.
+ * Created by ericrichardson on 2/23/17.
  */
 
 public class DemoTask implements Task {
-    String account;
-    int logoResourceId;
-    public DemoTask(String account, int logo) {
-        this.account = account;
-        this.logoResourceId = logo;
-
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public int getLogoResourceId() {
-        return logoResourceId;
+    @Override
+    public String getTaskName() {
+        return "Neque porro quisquam est";
     }
 
     @Override
-    public String getId() {
-        return account + logoResourceId;
+    public String getTaskDescription() {
+        return "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis...";
+    }
+
+    @Override
+    public int getLogoResourceId() {
+        return 0;
     }
 }
