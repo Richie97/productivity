@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="keyline">72dp</dimen>
+    <dimen name="service_icon_size">20dp</dimen>
+</resources>

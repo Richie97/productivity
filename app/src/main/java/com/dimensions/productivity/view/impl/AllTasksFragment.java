@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dimensions.productivity.R;
@@ -94,6 +95,7 @@ public final class AllTasksFragment extends BaseFragment<AllTasksPresenter, AllT
     class TaskViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.task_title) TextView title;
         @BindView(R.id.task_subtitle) TextView subtitle;
+        @BindView(R.id.task_service_icon) ImageView icon;
 
         TaskViewHolder(View itemView) {
             super(itemView);
@@ -103,6 +105,7 @@ public final class AllTasksFragment extends BaseFragment<AllTasksPresenter, AllT
         void bind(Task task) {
             title.setText(task.getTitle());
             subtitle.setText(task.getSubtitle());
+            icon.setImageResource(task.getType().icon);
         }
     }
 }
